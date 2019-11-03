@@ -14,7 +14,6 @@ class ListaEncad(object):
 
 		if self.primeiro == None:
 			self.primeiro = novoNo
-			#print(str(self.primeiro.dado))
 		else:
 			aux = self.primeiro
 			while aux.proximo != None:
@@ -51,16 +50,17 @@ class ListaEncad(object):
 				aux = aux.proximo
 		
 			if aux.dado == chave:
-				print(str(aux.dado))
+				return True
 			else:
-				return
+				return False
 
 	def printa(self):
 		temp = self.primeiro
-		lista = []
 		while temp != None:
-			print(str(temp.dado))
+			#print(str(temp.dado))
+			print("%s -> " %temp.dado, end="")
 			temp = temp.proximo
+		print("NULL")
 
 
 

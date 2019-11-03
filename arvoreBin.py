@@ -64,12 +64,12 @@ class ArvoreBin(object):
 					#É uma subarvore com dois filhos
 					troca = self.maior(self.no)
 					if troca != None:
-						self.no.dado = troca.chave
-						self.no.direita.excluir(troca.chave)
+						self.no.dado = troca.dado
+						self.no.esquerda.excluir(troca.dado)
 
-			elif chave < self.no.chave:
+			elif chave < self.no.dado:
 				self.no.esquerda.excluir(chave)
-			elif chave > self.no.chave:
+			elif chave > self.no.dado:
 				self.no.direita.excluir(chave)
 		else:
 			return
@@ -78,7 +78,7 @@ class ArvoreBin(object):
 	def buscar(self, chave):
 		if self.no != None:
 			if self.no.dado == chave:
-				print(str(self.no.dado))
+				return int(self.no.dado)
 			elif chave < self.no.dado:
 				self.no.esquerda.buscar(chave)
 			elif chave > self.no.dado:
@@ -98,14 +98,25 @@ class ArvoreBin(object):
 					no = no.esquerda.no
 		return no
 
+	def maior(self, no):
+		no = no.esquerda.no
+		if no != None:
+			while no.direita != None:
+				if no.direita.no == None:
+					return no
+				else:
+					no = no.direita.no
+
+		return no
+
 
 	def printa(self, level=0):        
 		self.updateAltura()  # Must update heights before balances 
 		if(self.no != None): 
 			print(self.no.dado, "[" + str(self.altura) + "]", 'L' if self.folha() else ' ')    
 			if self.no.esquerda != None: 
-				self.no.esquerda.display(level + 1)
+				self.no.esquerda.printa(level + 1)
 			if self.no.esquerda != None:
-				self.no.direita.display(level + 1)
+				self.no.direita.printa(level + 1)
 		
 		

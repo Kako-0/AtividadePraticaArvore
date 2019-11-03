@@ -136,7 +136,7 @@ class AVL(object):
 	def buscar(self, chave):
 		if self.no != None:
 			if self.no.dado == chave:
-				print(str(self.no.dado))
+				return int(self.no.dado)
 			elif chave < self.no.dado:
 				self.no.esquerda.buscar(chave)
 			elif chave > self.no.dado:
@@ -144,7 +144,7 @@ class AVL(object):
 		else:
 			return
 
-	#maior nó no filho a esquerda
+	#maior node no filho a esquerda
 	def maior(self, no):
 		no = no.esquerda.no
 		if no != None:
@@ -174,6 +174,6 @@ class AVL(object):
 		if(self.no != None): 
 			print(self.no.dado, "[" + str(self.altura + 1) + ":" + str(self.balanco) + "]", 'L' if self.folha() else ' ')    
 			if self.no.esquerda != None: 
-				self.no.esquerda.display(level + 1)
+				self.no.esquerda.printa(level + 1)
 			if self.no.esquerda != None:
-				self.no.direita.display(level + 1)
+				self.no.direita.printa(level + 1)
